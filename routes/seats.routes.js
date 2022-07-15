@@ -29,7 +29,7 @@ router.route('/seats').post((req, res) => {
   };
 
   if (
-    db.seat.some(
+    !db.seat.some(
       (seat) => seat.seat == newObject.seat && seat.day == newObject.day
     )
   ) {
