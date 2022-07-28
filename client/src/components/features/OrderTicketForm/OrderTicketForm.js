@@ -9,13 +9,15 @@ import {
   Alert,
   Progress,
 } from 'reactstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addSeatRequest,
   getRequests,
   loadSeatsRequest,
+  loadSeats,
 } from '../../../redux/seatsRedux';
+import io from 'socket.io-client';
 
 import './OrderTicketForm.scss';
 import SeatChooser from './../SeatChooser/SeatChooser';
@@ -32,6 +34,16 @@ const OrderTicketForm = () => {
     seat: '',
   });
   const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const socket = io(
+      process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:8000/'
+    );
+
+    socket.on('seatsUpdated', (seats) => {
+      dispatch(loadSeats(seats));
+    });
+  }, [dispatch]);
 
   const updateSeat = (e, seatId) => {
     e.preventDefault();
