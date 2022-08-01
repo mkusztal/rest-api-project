@@ -19,9 +19,6 @@ router.route('/seats/:id').get((req, res) => {
 router.route('/seats').post((req, res) => {
   const { day, seat, client, email } = req.body;
   const id = uuid();
-  const checkSeat = db.seats.some(
-    (seat) => seat.seat == newObject.seat && seat.day == newObject.day
-  );
 
   const newObject = {
     id: id,
@@ -30,6 +27,10 @@ router.route('/seats').post((req, res) => {
     client: client,
     email: email,
   };
+
+  const checkSeat = db.seats.some(
+    (seat) => seat.seat == newObject.seat && seat.day == newObject.day
+  );
 
   if (!checkSeat) {
     db.seats.push(newObject);
