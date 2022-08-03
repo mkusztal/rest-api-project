@@ -2,6 +2,7 @@ const express = require('express');
 const { v4: uuid } = require('uuid');
 const db = require('./../db.js');
 const router = express.Router();
+const socket = require('socket.io');
 
 //endpoints
 router.route('/seats').get((req, res) => {
@@ -19,6 +20,8 @@ router.route('/seats/:id').get((req, res) => {
 router.route('/seats').post((req, res) => {
   const { day, seat, client, email } = req.body;
   const id = uuid();
+
+  req.io.emit('seatsUpdated', db.seats);
 
   const newObject = {
     id: id,

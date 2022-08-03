@@ -4,6 +4,15 @@ const app = express();
 const path = require('path');
 const socket = require('socket.io');
 
+const server = app.listen(process.env.PORT || 8000, () => {
+  console.log('Server is running on port: 8000');
+});
+
+const io = socket(server);
+io.on('connection', (socket) => {
+  console.log('New socket!' + socket.id);
+});
+
 //import endpoints
 const testimonials = require('./routes/testimonials.routes');
 const concerts = require('./routes/concerts.routes');
@@ -31,11 +40,3 @@ app.get('*', (req, res) => {
 app.use((req, res) => {
   res.status(404).send('404 not found...');
 });
-
-const server = app.listen(process.env.PORT || 8000, () => {
-  console.log('Server is running on port: 8000');
-});
-
-const io = socket(server);
-
-io.on('connection', (socket) => {});
