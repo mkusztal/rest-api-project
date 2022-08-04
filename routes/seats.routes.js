@@ -21,8 +21,6 @@ router.route('/seats').post((req, res) => {
   const { day, seat, client, email } = req.body;
   const id = uuid();
 
-  req.io.emit('seatsUpdated', db.seats);
-
   const newObject = {
     id: id,
     day: day,
@@ -37,6 +35,7 @@ router.route('/seats').post((req, res) => {
 
   if (!checkSeat) {
     db.seats.push(newObject);
+    req.io.emit('seatsUpdated', db.seats);
     res.json({ message: 'Ok' });
   } else {
     res.json({ message: 'The slot is already taken...' });
