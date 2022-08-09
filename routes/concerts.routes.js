@@ -16,7 +16,7 @@ router.get('/concerts', async (req, res) => {
 router.get('/concerts/random', async (req, res) => {
   try {
     const count = await Concert.countDocuments();
-    const rand = Math.floor(Math.random * count);
+    const rand = Math.floor(Math.random() * count);
     const con = await Concert.findOne().skip(rand);
     if (!con) res.status(404).json({ message: 'Not found...' });
     else res.json(con);
