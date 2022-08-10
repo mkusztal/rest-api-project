@@ -1,5 +1,4 @@
 const Concert = require('../models/concerts.model');
-const { v4: uuid } = require('uuid');
 
 exports.getAllConcerts = async (req, res) => {
   try {
@@ -33,10 +32,8 @@ exports.getConcertById = async (req, res) => {
 
 exports.addConcert = async (req, res) => {
   const { performer, genre, price, day, image } = req.body;
-  const id = uuid();
   try {
     const newConcert = new Concert({
-      id: id,
       performer: performer,
       genre: genre,
       price: price,

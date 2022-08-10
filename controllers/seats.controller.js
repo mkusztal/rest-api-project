@@ -1,5 +1,4 @@
 const Seat = require('../models/seats.model');
-const { v4: uuid } = require('uuid');
 
 exports.getAllSeats = async (req, res) => {
   res.json(await Seat.find());
@@ -33,10 +32,8 @@ exports.getSeatById = async (req, res) => {
 
 exports.addSeat = async (req, res) => {
   const { day, seat, client, email } = req.body;
-  const id = uuid();
   try {
     const newSeat = new Seat({
-      id: id,
       day: day,
       seat: seat,
       client: client,

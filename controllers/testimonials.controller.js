@@ -1,5 +1,4 @@
 const Testimonial = require('../models/testimonials.model');
-const { v4: uuid } = require('uuid');
 
 exports.getAllTestimonials = async (req, res) => {
   try {
@@ -33,11 +32,9 @@ exports.getTestimonialsById = async (req, res) => {
 
 exports.addTestimonial = async (req, res) => {
   const { author, text } = req.body;
-  const id = uuid();
 
   try {
     const newTestimonial = new Testimonial({
-      id: id,
       author: author,
       text: text,
     });
