@@ -19,7 +19,10 @@ app.use('/api', testimonials);
 app.use('/api', concerts);
 app.use('/api', seats);
 
-mongoose.connect('mongodb://localhost:27017/NewWaveDB', {
+const uri =
+  'mongodb+srv://maciej_kusztal:22333444455555@cluster0.zjgyrgz.mongodb.net/?retryWrites=true&w=majority';
+
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
