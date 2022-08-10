@@ -20,7 +20,7 @@ app.use('/api', concerts);
 app.use('/api', seats);
 
 const uri =
-  'mongodb+srv://maciej_kusztal:22333444455555@cluster0.zjgyrgz.mongodb.net/?retryWrites=true&w=majority';
+  'mongodb+srv://maciej_kusztal:22333444455555@cluster0.zjgyrgz.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
