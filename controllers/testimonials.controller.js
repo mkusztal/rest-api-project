@@ -68,7 +68,7 @@ exports.updateTestimonialsById = async (req, res) => {
 
 exports.removeTestimonialsById = async (req, res) => {
   try {
-    const tes = Testimonial.findById(req.params.id);
+    const tes = await Testimonial.findById(req.params.id);
     if (tes) {
       await Testimonial.deleteOne({ _id: req.params.id });
       res.json({ message: 'Ok' });

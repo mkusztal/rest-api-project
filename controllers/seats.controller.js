@@ -71,7 +71,7 @@ exports.updateSeatById = async (req, res) => {
 
 exports.removeSeatById = async (req, res) => {
   try {
-    const seatId = Seat.findById(req.params.id);
+    const seatId = await Seat.findById(req.params.id);
     if (seatId) {
       await Seat.deleteOne({ _id: req.params.id });
       res.json({ message: 'Ok' });

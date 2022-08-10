@@ -73,7 +73,7 @@ exports.updateConcertById = async (req, res) => {
 
 exports.removeConcertById = async (req, res) => {
   try {
-    const con = Concert.findById(req.params.id);
+    const con = await Concert.findById(req.params.id);
     if (con) {
       await Concert.deleteOne({ _id: req.params.id });
       res.json({ message: 'Ok' });
