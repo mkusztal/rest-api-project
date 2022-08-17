@@ -2,8 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 
 const app = express();
+app.use(helmet);
 
 const testimonials = require('./routes/testimonials.routes');
 const concerts = require('./routes/concerts.routes');
