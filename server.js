@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
-const aws = require('aws-sdk');
 
 const app = express();
 
@@ -20,11 +19,10 @@ app.use('/api', testimonials);
 app.use('/api', concerts);
 app.use('/api', seats);
 
-let accessKey = new aws.S3({
-  accessDB_LINK: process.env.S3_LINK,
-});
+let uri =
+  'mongodb+srv://maciej_kusztal:22333444455555@cluster0.zjgyrgz.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
 
-mongoose.connect(accessKey, {
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
