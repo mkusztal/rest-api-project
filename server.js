@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv/config');
 const helmet = require('helmet');
 
 const app = express();
@@ -21,10 +22,9 @@ app.use('/api', testimonials);
 app.use('/api', concerts);
 app.use('/api', seats);
 
-let uri =
-  'mongodb+srv://maciej_kusztal:22333444455555@cluster0.zjgyrgz.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
+let uriDB = process.env.DB_URI;
 
-mongoose.connect(uri, {
+mongoose.connect(uriDB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
